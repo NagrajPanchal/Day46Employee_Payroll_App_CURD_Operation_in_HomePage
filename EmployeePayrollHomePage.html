@@ -23,9 +23,9 @@
     <div class="main-content">
         <div class="header-content">
             <div class="emp-detail-text">
-                Employee Details <div class="emp-count">2</div>
+                Employee Details <div class="emp-count">11</div>
             </div>
-            <a href="EmployeePayrollAppFormPage.html" class="add-button">
+            <a href="Employee_Payroll_App.html" class="add-button">
                 <img src="..\Day45Employee_Payroll_Home_Page\assets\icons\attach_file-24px.svg" alt="">Add User
             </a>
         </div> <!--header-content-->
@@ -59,10 +59,18 @@
         </table>
     </div><!--table-main-->
 </div><!--main-content-->
-<script src="utility.js"></script>
-<script src="site_properties.js"></script>
-<script src="EmployeePayrollHomePage.js"></script>
-<script src="Employee_Payroll_Data.js"></script>
-<script src="EmployeePayrollAppFormPage.js"></script>
+<script>
+    const remove = (node) => { 
+    let empPayrollData = empPayrollList.find(empData => empData._id == node.id); 
+    if (!empPayrollData) return;
+    const index = empPayrollList 
+    .map(empData => empData._id)    
+    .indexOf(empPayrollData._id);   
+    empPayrollList.splice (index, 1);
+    localStorage.setItem("Employee Payroll List", JSON.stringify(empPayrollList));
+    document.querySelector(".emp-count").textContent = empPayrollList.length; 
+    createInnerHtml();    
+    }
+</script>
 </body>
 </html>
